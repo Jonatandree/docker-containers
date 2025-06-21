@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:10.11  # Versión estable
+    container_name: mariadb_container
+    environment:
+      MYSQL_ROOT_PASSWORD: "RootPassword123!"
+      MYSQL_DATABASE: "mi_basedatos"
+      MYSQL_USER: "mi_usuario"
+      MYSQL_PASSWORD: "UsuarioPassword123!"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    restart: unless-stopped
+
+  adminer:
+    image: adminer
+    container_name: adminer_container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+
+volumes:
+  mariadb_data:
