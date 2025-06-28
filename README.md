@@ -1,0 +1,1 @@
+### para levantar el creaerlo docker-compose up -d
